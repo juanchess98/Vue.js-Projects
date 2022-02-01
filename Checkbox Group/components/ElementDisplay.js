@@ -4,15 +4,12 @@ app.component('table-elements',{
         listElements: {
             type: Array,
             required: false
-        },
-        testElement : {
-            type: Boolean,
-            required: false
         }
     },
     data() {
         return {
             elementsToDisplay: [],
+            idSelectedElements : []
         }
     },
     template: 
@@ -22,9 +19,9 @@ app.component('table-elements',{
     <table class="table table-sm table-dark">
         <thead>
           <tr>
-            <th><label for="box-corners"><i class="fa-regular fa-square-plus"></i></label><input type="checkbox" @change="alertEmit($event)"  id="box-corners"></th>
-            <th><label for="persons"><i class="fa-solid fa-person"></i></label><input type="checkbox" @change="alertEmit($event)"  id="persons"></th>
-            <th><label for="bounding-box"><i class="fa-solid fa-cubes"></i></label><input type="checkbox" @change="alertEmit($event)"  id="bounding-box"></th>
+            <th><checkbox-icon :icon="'fa-regular fa-square-plus'" :id="'box-corners'" @change-box="updateElements"></checkbox-icon></th>
+            <th><checkbox-icon :icon="'fa-solid fa-person'" :id="'persons'" @change-box="updateElements"></checkbox-icon></th>
+            <th><checkbox-icon :icon="'fa-solid fa-cubes'" :id="'bounding-box'" @change-box="updateElements"></checkbox-icon></th>
           </tr>
         </thead>
         <tbody>
@@ -40,11 +37,28 @@ app.component('table-elements',{
 </div>
     `,
     methods: {
+        
+        updateElements(el){
+
+            // Use indexOf and filter 
+            if(el.target.checked){
+                this.idSelectedElements.push(el.target.id)
+            } else {
+                var idx = this.idSelectedElements.indexOf(el.target.id)
+                this.idSelectedElements.splice(idx, 1)
+            }
+            this.elementsToDisplay = this.listElements.filter(element => this.idSelectedElements.indexOf(element.type) > -1)
+        }
+
+
+        /* Alternative longer way
+
         showElement(type){
-            const filteredList = this.listElements.filter(element => element.type === type)
-            return filteredList
-            },   
-        alertEmit(el){
+        const filteredList = this.listElements.filter(element => element.type === type)
+        return filteredList
+        },
+        alertEmit(el){ 
+            var this.listElements
                 if(el.target.checked){
                     console.log(el.target.id);
                     const filteredList = this.showElement(el.target.id)
@@ -57,7 +71,7 @@ app.component('table-elements',{
 
             },
         removeElements(el){
-            const idx = []
+            var idx = []
 
             if(this.elementsToDisplay) {
                 for (let index = 0; index < this.elementsToDisplay.length; index++) {
@@ -70,17 +84,7 @@ app.component('table-elements',{
                     }
                 }
             }
-            
-
-    },
-
-    computed: {
-        testComputed() {
-            if (this.testElement){
-                return "It works"
-            }
-            return 'It doenst work as well'
-        }
+            */
 
     }
 })

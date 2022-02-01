@@ -33,7 +33,6 @@ app.component('review-form', {
             if(this.name==='' || this.review === '' || this.rating === null) {
                 alert('Review is incompleted. Please fill out every field')
                 return
-
             }
             let productReview = {
                 name: this.name,

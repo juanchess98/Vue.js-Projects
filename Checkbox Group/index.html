@@ -12,13 +12,22 @@
 </head>
 <body>
     <div id="app">
-        <table-elements :list-elements='elements' :test-element='test1'></table-elements>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+              <span class="navbar-brand mb-0 h1">Select Type Checkbox</span>
+            </div>
+          </nav>
+        <table-elements :list-elements='elements'></table-elements>
     </div>
     
     <script src="./main.js"></script>
     <script src="./components/ElementDisplay.js"></script>
+    <script src="./components/CheckBoxIcon.js"></script>
     <script>
         const mountedApp = app.mount('#app')
     </script>
+
+
 </body>
 </html>
+

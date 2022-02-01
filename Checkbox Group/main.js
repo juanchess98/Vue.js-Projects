@@ -11,7 +11,6 @@ const app =  Vue.createApp({
                 {type: 'persons', color: 'green', quantity: 5},
                 {type: 'persons', color: 'orange', quantity: 5},
                 {type: 'persons', color: 'violet', quantity: 5}],
-            test1: true
         }
         }
         

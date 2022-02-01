@@ -24,7 +24,7 @@ app.component('product-display', {
                 <li v-for="detail in details">{{detail}}</li>
             </ul>
             <div v-for="(variant, index) in variants" :key="variant.id" 
-            @mouseover="updateVariant(index)"
+                
             class="color-circle"
             :style="{ backgroundColor: variant.color }">
         </div>      
@@ -32,7 +32,7 @@ app.component('product-display', {
             <button class="button" v-on:click="removeFromCart">Remove from Cart</button>
         </div>
     </div>
-    <review-list  v-if="reviews.length":reviews="reviews"></review-list>
+    <review-list  v-if="reviews.length" :reviews="reviews"></review-list>
     <review-form @review-submitted='addReview'></review-form>
     
 </div>`,
@@ -66,7 +66,7 @@ methods: {
     },
     addReview(review) {
         this.reviews.push(review)
-
+        console.log(this.reviews);
     }
 },
 computed: {
